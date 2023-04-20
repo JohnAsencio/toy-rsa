@@ -38,7 +38,7 @@ pub fn decrypt(key: (u32, u32), msg: u64) -> u32
     let q = key.1;
     let z = (p as u128) * (q as u128);
     println!("p: {} q: {} z: {}", p ,q, z);
-    let d = modinverse(EXP, yuy(p, q).into());
+    let d = modinverse(EXP, yuy(p, q));
     modexp(msg, d, z.try_into().unwrap()).try_into().unwrap()
 }
 
@@ -58,13 +58,3 @@ use toy_rsa_lib::*;
 //toy_rsa_lib::pub fn rsa_prime() -> u32
 
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
