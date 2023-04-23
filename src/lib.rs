@@ -47,17 +47,7 @@ pub fn decrypt(key: (u32, u32), msg: u64) -> u32
 
 /// functions from the toy_rsa_lib
 use toy_rsa_lib::*;
-
-
 //toy_rsa_lib::pub fn lcm(n: u64, m: u64) -> u64
-
-
 //toy_rsa_lib::pub fn modexp(x: u64, y: u64, m: u64) -> u64
-
-
 //toy_rsa_lib::pub fn modinverse(a: u64, m: u64) -> u64
-
-
 //toy_rsa_lib::pub fn rsa_prime() -> u32
-
-
