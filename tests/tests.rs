@@ -6,11 +6,40 @@ mod tests {
 
     #[test]
     fn static_tests() {
-        let msg = 54;
-        let key = 36;
-        let a: u32 = 2;
-        let b: u32 = 18;
-        let emsg = encrypt(key, msg);
-        assert_eq!(54, decrypt((a,b), emsg))
+        let key1 = 0xde9c5816141c8ba9;
+        let msg1 = 0x12345f;
+        let p: u32 = 0xed23e6cd;
+        let q: u32 = 0xf050a04d;
+        let emsg1 = encrypt(key1, msg1);
+        assert_eq!(msg1, decrypt((p,q), emsg1));
+
+        let msg = 5400;
+        let pq = genkey();
+        let key = (pq.0 as u128) * (pq.1 as u128);
+        let emsg = encrypt(key.try_into().unwrap(), msg);
+        assert_eq!(msg, decrypt(pq, emsg));
+
     }
+
+    #[test]
+    fn random_tests() {
+
+        let msgs: [u32; 10] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 10000];
+
+        let mut i = 0;
+        while i < msgs.len().try_into().unwrap()
+        {
+            let pq = genkey();
+            let key = (pq.0 as u128) * (pq.1 as u128);
+            let emsg = encrypt(key.try_into().unwrap(), msgs[i as usize]);
+            assert_eq!(msgs[i as usize], decrypt(pq, emsg));
+            i+=1;
+
+        }
+
+
+
+
+    }
+
 }

@@ -1,6 +1,6 @@
 fn main()
 {
-    // Private Key: p = 0xed23e6cd q = 0xf050a04d
+   // Private Key: p = 0xed23e6cd q = 0xf050a04d
     let public_key: u128 = /* p * q = */0xde9c5816141c8ba9;
     // Message: 0x12345f
     let encrypted: i64 = 0x6418280e0c4d7675;
@@ -19,4 +19,8 @@ fn main()
     let dmsg = decrypt((p,q), emsg);
     println!("decrypted message {}", dmsg);
     println!("this is what its  {}", decrypted);
+
+
+    let pq = genkey();
+    println!("{} {}", pq.0, pq.1);
 }
